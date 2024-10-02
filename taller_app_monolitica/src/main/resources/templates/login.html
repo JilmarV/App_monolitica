@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1e1e2f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-form {
+            background-color: #2e2e3f;
+            padding: 40px;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 10px 10px 0px #b39ddb;
+            width: 350px;
+            text-align: center;
+        }
+
+        .user-icon {
+            background-color: #b39ddb;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 5px 5px 0px #7b1fa2;
+        }
+
+        .user-icon img {
+            width: 60px;
+            height: 60px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            background-color: #000;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            color: #b39ddb;
+            text-transform: uppercase;
+            padding: 10px;
+        }
+
+        .input-group-text {
+            background-color: #b39ddb;
+            border: none;
+            color: #1e1e2f;
+        }
+
+        .input-group input::placeholder {
+            color: #b39ddb;
+            text-transform: uppercase;
+        }
+
+        .btn-login {
+            background-color: #b39ddb;
+            color: #1e1e2f;
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 0;
+            box-shadow: 5px 5px 0px #7b1fa2;
+            font-weight: bold;
+        }
+
+        .btn-login:hover {
+            background-color: #9575cd;
+        }
+
+        .remember-me, .forgot-password {
+            color: #fff;
+        }
+
+        .remember-me input {
+            margin-right: 5px;
+        }
+
+        .btn-register {
+            background-color: transparent;
+            color: #b39ddb;
+            border: 2px solid #b39ddb;
+            padding: 10px;
+            width: 100%;
+            margin-top: 20px;
+            font-weight: bold;
+            box-shadow: 5px 5px 0px #7b1fa2;
+            border-radius: 0;
+        }
+
+        .btn-register:hover {
+            background-color: #b39ddb;
+            color: #1e1e2f;
+        }
+
+        .input-group .form-control {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            cursor: pointer;
+            color: #b39ddb;
+            background-color: transparent;
+            border: none;
+            outline: none;
+        }
+
+        .toggle-password:hover {
+            color: #9575cd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-form">
+    <!-- Icono de usuario -->
+    <div class="user-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User Icon">
+    </div>
+
+    <form>
+        <div class="input-group mb-3 position-relative">
+            <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+            <input type="text" class="form-control" placeholder="correo electrónico">
+        </div>
+
+        <div class="input-group mb-3 position-relative">
+            <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+            <input type="password" class="form-control" id="passwordField" placeholder="contraseña">
+            <i class="bi bi-eye-fill toggle-password" id="toggleIcon" onclick="togglePassword()"></i>
+        </div>
+
+        <button type="submit" class="btn btn-login mt-4">INICIAR SESIÓN</button>
+        <button type="button" class="btn btn-register">REGISTRARME</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    function togglePassword() {
+        const passwordField = document.getElementById("passwordField");
+        const toggleIcon = document.getElementById("toggleIcon");
+
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            toggleIcon.classList.remove("bi-eye-fill");
+            toggleIcon.classList.add("bi-eye-slash-fill");
+        } else {
+            passwordField.type = "password";
+            toggleIcon.classList.remove("bi-eye-slash-fill");
+            toggleIcon.classList.add("bi-eye-fill");
+        }
+    }
+</script>
+</body>
+</html>
