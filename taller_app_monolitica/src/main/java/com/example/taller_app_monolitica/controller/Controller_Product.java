@@ -1,6 +1,6 @@
 package com.example.taller_app_monolitica.controller;
 
-import ch.qos.logback.core.model.Model;
+import org.springframework.ui.Model;
 import com.example.taller_app_monolitica.model.Product;
 import com.example.taller_app_monolitica.service.ServiceProduct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,28 +11,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/Productos")
-public class controller_product {
+@RequestMapping("/Products")
+public class Controller_Product {
 
     @Autowired
     private ServiceProduct service_product;
 
-
     @GetMapping
-    public String listarProductos() {
-       service_product.findAll();
-       return "productos/list";
+    public String listProduct(Model model) {
+         Model products = model.addAttribute("products", service_product.findAll());
+        return "products/list";
     }
 
     @PostMapping
-    public String guardarProducto(Product product, Model model) {
+    public String saveProduct(Product product, Model model) {
         service_product.saveProduct(product);
-        return "redirect:/productos";
+        return "redirect:/products";
     }
 
-    @GetMapping("/eliminar/{id}")
-public String eliminar(@PathVariable("id") Long id){
+    @GetMapping("/delete/{id}")
+public String deleteProduct(@PathVariable("id") Long id){
     service_product.deleteProduct(id);
-    return "redirect:/productos";
+    return "redirect:/products";
     }
 }
