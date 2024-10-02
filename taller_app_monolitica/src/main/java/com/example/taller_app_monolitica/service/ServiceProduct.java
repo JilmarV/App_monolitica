@@ -13,7 +13,7 @@ public class ServiceProduct {
     private RepositoryProduct repositoryProduct;
 
     public List<Product> findAll() {
-        return repositoryProduct.findAll();
+        return repositoryProduct.findAllById();
     }
 
     public Product saveProduct(Product product) {
