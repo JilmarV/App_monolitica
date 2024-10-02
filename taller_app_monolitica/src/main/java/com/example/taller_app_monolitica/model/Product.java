@@ -9,14 +9,20 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_product;
 
+    @Column(name = "sku", unique = true)
+    private String sku;
+
     @Column(name = "name")
     private String name;
 
-    @Column(name = "quantity")
-    private String quantity;
-
     @Column(name = "price")
     private String price;
+
+    @Column(name = "brand")
+    private String brand;
+
+    @Column(name = "store")
+    private String store;
 
     @ManyToOne
     @JoinColumn(name = "id_user")
@@ -26,18 +32,22 @@ public class Product {
         super();
     }
 
-    public Product(Long id_product, String name, String quantity, String price, User user) {
+    public Product(Long id_product, String sku, String name, String price, String brand, String store, User user) {
         this.id_product = id_product;
+        this.sku = sku;
         this.name = name;
-        this.quantity = quantity;
         this.price = price;
+        this.brand = brand;
+        this.store = store;
         this.user = user;
     }
 
-    public Product(String name, String quantity, String price, User user) {
+    public Product(String sku, String name, String price, String brand, String store, User user) {
+        this.sku = sku;
         this.name = name;
-        this.quantity = quantity;
         this.price = price;
+        this.brand = brand;
+        this.store = store;
         this.user = user;
     }
 
@@ -45,8 +55,16 @@ public class Product {
         return id_product;
     }
 
-    public void setId_product(Long id_user) {
-        this.id_product = id_user;
+    public void setId_product(Long id_product) {
+        this.id_product = id_product;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 
     public String getName() {
@@ -57,20 +75,28 @@ public class Product {
         this.name = name;
     }
 
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
     public String getPrice() {
         return price;
     }
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getStore() {
+        return store;
+    }
+
+    public void setStore(String store) {
+        this.store = store;
     }
 
     public User getUser() {

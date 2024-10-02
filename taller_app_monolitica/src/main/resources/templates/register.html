@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Registro</title>
+    <title>Registrar Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap Icons -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
     <style>
         body {
             background-color: #1e1e2f;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            color: #fff;
+            padding: 20px;
         }
 
-        .register-form {
+        .user-form {
             background-color: #2e2e3f;
             padding: 40px;
             border-radius: 10px;
-            position: relative;
             box-shadow: 10px 10px 0px #b39ddb;
-            width: 400px;
+            width: 45%;
+            margin: 0 auto; /* Centrar formulario */
+        }
+
+        h3 {
             text-align: center;
+            color: #b39ddb;
         }
 
         .input-group {
@@ -33,11 +34,13 @@
         .input-group input {
             background-color: #000;
             border: none;
-            border-radius: 0;
-            box-shadow: none;
-            color: #b39ddb;
-            text-transform: uppercase;
+            color: #b39ddb; /* Color del texto */
             padding: 10px;
+        }
+
+        .input-group input::placeholder {
+            color: #b39ddb; /* Color del placeholder */
+            opacity: 1; /* Para que sea más visible */
         }
 
         .input-group-text {
@@ -46,93 +49,70 @@
             color: #1e1e2f;
         }
 
-        .input-group input::placeholder {
-            color: #b39ddb;
-            text-transform: uppercase;
-        }
-
-        .btn-register {
+        .btn-add-user {
             background-color: #b39ddb;
             color: #1e1e2f;
             width: 100%;
             padding: 10px;
             border: none;
-            border-radius: 0;
-            box-shadow: 5px 5px 0px #7b1fa2;
-            font-weight: bold;
-        }
-
-        .btn-register:hover {
-            background-color: #9575cd;
-        }
-
-        .input-group .form-control {
-            position: relative;
-        }
-
-        .toggle-password {
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            cursor: pointer;
-            color: #b39ddb;
-            background-color: transparent;
-            border: none;
-            outline: none;
-        }
-
-        .toggle-password:hover {
-            color: #9575cd;
+            box-shadow: 5px 5px 0px #000;
         }
     </style>
 </head>
 <body>
-
-<div class="register-form">
-    <h3 class="text-light mb-4">Formulario de Registro</h3>
-
-    <form>
-        <div class="input-group mb-3 position-relative">
-            <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-            <input type="text" class="form-control" placeholder="Nombre" name="name">
+<div class="user-form">
+    <h3>Registrar Usuario</h3>
+    <form id="addUserForm">
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-person"></i></span>
+            <input type="text" class="form-control" placeholder="Nombre" name="first_name" required>
         </div>
-
-        <div class="input-group mb-3 position-relative">
-            <span class="input-group-text"><i class="bi bi-envelope-fill"></i></span>
-            <input type="email" class="form-control" placeholder="Email" name="email">
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-person"></i></span>
+            <input type="text" class="form-control" placeholder="Apellido" name="last_name" required>
         </div>
-
-        <div class="input-group mb-3 position-relative">
-            <span class="input-group-text"><i class="bi bi-phone-fill"></i></span>
-            <input type="text" class="form-control" placeholder="Número de Teléfono" name="phone_number">
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-card-text"></i></span>
+            <input type="text" class="form-control" placeholder="Número de Documento" name="document_num" required>
         </div>
-
-        <div class="input-group mb-3 position-relative">
-            <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-            <input type="password" class="form-control" id="passwordField" placeholder="Contraseña" name="password">
-            <i class="bi bi-eye-fill toggle-password" id="toggleIcon" onclick="togglePassword()"></i>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-house"></i></span>
+            <input type="text" class="form-control" placeholder="Dirección" name="address" required>
         </div>
-
-        <button type="submit" class="btn btn-register mt-4">REGISTRARSE</button>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+            <input type="email" class="form-control" placeholder="Correo Electrónico" name="email" required>
+        </div>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+            <input type="password" class="form-control" placeholder="Contraseña" name="password" required>
+            <span class="input-group-text" id="togglePassword"><i class="bi bi-eye-slash"></i></span>
+        </div>
+        <button type="submit" class="btn-add-user">Registrar Usuario</button>
     </form>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    function togglePassword() {
-        const passwordField = document.getElementById("passwordField");
-        const toggleIcon = document.getElementById("toggleIcon");
+    document.getElementById('addUserForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        // Aquí podrías manejar la lógica de agregar usuarios
+        event.target.reset();
+    });
 
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-            toggleIcon.classList.remove("bi-eye-fill");
-            toggleIcon.classList.add("bi-eye-slash-fill");
+    // Mostrar/ocultar la contraseña
+    document.getElementById('togglePassword').addEventListener('click', function() {
+        const passwordInput = document.querySelector('input[name="password"]');
+        const icon = this.querySelector('i');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            icon.classList.remove('bi-eye-slash');
+            icon.classList.add('bi-eye');
         } else {
-            passwordField.type = "password";
-            toggleIcon.classList.remove("bi-eye-slash-fill");
-            toggleIcon.classList.add("bi-eye-fill");
+            passwordInput.type = 'password';
+            icon.classList.remove('bi-eye');
+            icon.classList.add('bi-eye-slash');
         }
-    }
+    });
 </script>
 </body>
 </html>
