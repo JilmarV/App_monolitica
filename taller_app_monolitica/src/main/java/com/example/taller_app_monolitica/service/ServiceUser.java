@@ -23,4 +23,9 @@ public class ServiceUser {
     public void deleteUser(Long id) {
         repositoryUser.deleteById(id);
     }
+
+    public User loginUser(String username, String password) {
+        return repositoryUser.findByUsernameAndPassword(username, password);
+
+    }
 }

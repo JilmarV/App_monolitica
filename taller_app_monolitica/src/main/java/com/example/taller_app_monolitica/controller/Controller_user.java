@@ -5,10 +5,7 @@ import com.example.taller_app_monolitica.service.ServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user")
@@ -43,5 +40,19 @@ public class Controller_user {
     public String deleteUser(Model model, @PathVariable Long id) {
         serviceUser.deleteUser(id);
         return "redirect:/user";
+    }
+
+
+    @PostMapping
+    public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
+        User user = serviceUser.loginUser(username, password);
+        if (user != null) {
+            // Si el inicio de sesión es exitoso, redirigir a la página de inicio
+            return "redirect:/home";
+        } else {
+            // Si las credenciales son incorrectas, mostrar un mensaje de error
+            model.addAttribute("error", "Nombre de usuario o contraseña incorrectos");
+            return "login";
+        }
     }
 }
