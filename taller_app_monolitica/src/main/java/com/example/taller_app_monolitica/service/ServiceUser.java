@@ -3,13 +3,12 @@ package com.example.taller_app_monolitica.service;
 import com.example.taller_app_monolitica.model.User;
 import com.example.taller_app_monolitica.repository.RepositoryUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class serviceUser {
+public class ServiceUser {
     @Autowired
     private RepositoryUser repositoryUser;
 
