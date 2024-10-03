@@ -24,31 +24,25 @@ public class Product {
     @Column(name = "store")
     private String store;
 
-    @ManyToOne
-    @JoinColumn(name = "id_user")
-    private User user;
-
     public Product() {
         super();
     }
 
-    public Product(Long id_product, String sku, String name, String price, String brand, String store, User user) {
+    public Product(Long id_product, String sku, String name, String price, String brand, String store) {
         this.id_product = id_product;
         this.sku = sku;
         this.name = name;
         this.price = price;
         this.brand = brand;
         this.store = store;
-        this.user = user;
     }
 
-    public Product(String sku, String name, String price, String brand, String store, User user) {
+    public Product(String sku, String name, String price, String brand, String store) {
         this.sku = sku;
         this.name = name;
         this.price = price;
         this.brand = brand;
         this.store = store;
-        this.user = user;
     }
 
     public Long getId_product() {
@@ -97,13 +91,5 @@ public class Product {
 
     public void setStore(String store) {
         this.store = store;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 }

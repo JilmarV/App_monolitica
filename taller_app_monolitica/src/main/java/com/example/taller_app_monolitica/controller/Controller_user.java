@@ -39,16 +39,16 @@ public class Controller_user {
     @GetMapping("/delete/{id}")
     public String deleteUser(Model model, @PathVariable Long id) {
         serviceUser.deleteUser(id);
-        return "redirect:/user";
+        return "redirect:/user/form_product";
     }
 
 
     @PostMapping
-    public String login(@RequestParam("username") String username, @RequestParam("password") String password, Model model) {
-        User user = serviceUser.loginUser(username, password);
+    public String login(@RequestParam("username") String username, @RequestParam("email") String email, @RequestParam("password") String password, Model model) {
+        User user = serviceUser.loginUser(username, email, password);
         if (user != null) {
             // Si el inicio de sesión es exitoso, redirigir a la página de inicio
-            return "redirect:/home";
+            return "redirect:/user/form_product";
         } else {
             // Si las credenciales son incorrectas, mostrar un mensaje de error
             model.addAttribute("error", "Nombre de usuario o contraseña incorrectos");

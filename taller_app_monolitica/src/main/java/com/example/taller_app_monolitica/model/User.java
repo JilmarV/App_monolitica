@@ -32,14 +32,11 @@ public class User {
     @Column(name = "username", unique = true)
     private String username;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
-    private List<Product> products;
-
     public User() {
         super();
     }
 
-    public User(Long id_user, String document_num, String first_name, String last_name, String address, String email, String password, String username, List<Product> products) {
+    public User(Long id_user, String document_num, String first_name, String last_name, String address, String email, String password, String username) {
         this.id_user = id_user;
         this.document_num = document_num;
         this.first_name = first_name;
@@ -48,10 +45,9 @@ public class User {
         this.email = email;
         this.password = password;
         this.username = username;
-        this.products = products;
     }
 
-    public User(String document_num, String first_name, String last_name, String address, String email, String password, String username, List<Product> products) {
+    public User(String document_num, String first_name, String last_name, String address, String email, String password, String username) {
         this.document_num = document_num;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -59,7 +55,6 @@ public class User {
         this.email = email;
         this.password = password;
         this.username = username;
-        this.products = products;
     }
 
     public Long getId_user() {
@@ -124,13 +119,5 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 }
