@@ -43,7 +43,7 @@ public class Controller_user {
     }
 
 
-    @PostMapping
+    @PostMapping("/login")
     public String login(@RequestParam("username") String username, @RequestParam("email") String email, @RequestParam("password") String password, Model model) {
         User user = serviceUser.loginUser(username, email, password);
         if (user != null) {
