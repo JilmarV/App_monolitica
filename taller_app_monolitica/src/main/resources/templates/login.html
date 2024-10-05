@@ -136,20 +136,21 @@
         <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="User Icon">
     </div>
 
-    <form>
+    <form action="/login" method="post">
         <div class="input-group mb-3 position-relative">
             <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-            <input type="text" class="form-control" placeholder="correo electrónico">
+            <input type="text" class="form-control" name="login" placeholder="correo electrónico">
         </div>
 
         <div class="input-group mb-3 position-relative">
             <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
-            <input type="password" class="form-control" id="passwordField" placeholder="contraseña">
+            <input type="password" class="form-control" name="password" id="passwordField" placeholder="contraseña">
             <i class="bi bi-eye-fill toggle-password" id="toggleIcon" onclick="togglePassword()"></i>
         </div>
 
-        <button type="submit" class="btn btn-login mt-4">INICIAR SESIÓN</button>
-        <button type="button" class="btn btn-register">REGISTRARME</button>
+        <button type="submit" class="btn btn-login mt-4"> INICIAR SESIÓN</button>
+        <a th:href="@{/user/new}"><button type="button" class="btn btn-register" >REGISTRARME</button></a>
+
     </form>
 </div>
 

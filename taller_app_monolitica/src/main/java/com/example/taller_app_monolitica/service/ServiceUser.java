@@ -24,7 +24,11 @@ public class ServiceUser {
         repositoryUser.deleteById(id);
     }
 
-    public User loginUser(String username, String email, String password) {
-        return repositoryUser.findByUsernameOrEmailAndPassword(username, email, password);
+    public User loginUsername(String username,  String password) {
+        return repositoryUser.findByUsernameAndPassword(username, password);
+    }
+
+    public User loginEmail(String email, String password) {
+        return  repositoryUser.findByEmailAndPassword(email, password);
     }
 }

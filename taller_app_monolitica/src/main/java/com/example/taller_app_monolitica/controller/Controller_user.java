@@ -49,16 +49,38 @@ public class Controller_user {
     }
 
 
+//    @PostMapping("/login")
+//    public String login(@RequestParam("username") String username, @RequestParam("email") String email, @RequestParam("password") String password, Model model) {
+//        User user = serviceUser.loginUser(username, email, password);
+//        if (user != null) {
+//            // Si el inicio de sesión es exitoso, redirigir a la página de inicio
+//            return "redirect:/user/form_product";
+//        } else {
+//            // Si las credenciales son incorrectas, mostrar un mensaje de error
+//            model.addAttribute("error", "Nombre de usuario o contraseña incorrectos");
+//            return "login";
+//        }
+//    }
+
     @PostMapping("/login")
-    public String login(@RequestParam("username") String username, @RequestParam("email") String email, @RequestParam("password") String password, Model model) {
-        User user = serviceUser.loginUser(username, email, password);
+    public String login(@RequestParam("login") String login, @RequestParam("password") String password, Model model) {
+        User user = null;
+
+        if (login.contains("@")) {
+            user = serviceUser.loginEmail(login, password);
+        } else {
+            user = serviceUser.loginUsername(login, password);
+        }
+
         if (user != null) {
-            // Si el inicio de sesión es exitoso, redirigir a la página de inicio
             return "redirect:/user/form_product";
         } else {
-            // Si las credenciales son incorrectas, mostrar un mensaje de error
+            System.out.println("entro");
             model.addAttribute("error", "Nombre de usuario o contraseña incorrectos");
-            return "login";
+            return "redirect:/user/home";
         }
     }
+
+
+
 }
