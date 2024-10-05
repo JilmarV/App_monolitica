@@ -2,6 +2,8 @@ package com.example.taller_app_monolitica.controller;
 
 import com.example.taller_app_monolitica.model.User;
 import com.example.taller_app_monolitica.service.ServiceUser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,18 +51,6 @@ public class Controller_user {
     }
 
 
-//    @PostMapping("/login")
-//    public String login(@RequestParam("username") String username, @RequestParam("email") String email, @RequestParam("password") String password, Model model) {
-//        User user = serviceUser.loginUser(username, email, password);
-//        if (user != null) {
-//            // Si el inicio de sesión es exitoso, redirigir a la página de inicio
-//            return "redirect:/user/form_product";
-//        } else {
-//            // Si las credenciales son incorrectas, mostrar un mensaje de error
-//            model.addAttribute("error", "Nombre de usuario o contraseña incorrectos");
-//            return "login";
-//        }
-//    }
 
     @PostMapping("/login")
     public String login(@RequestParam("login") String login, @RequestParam("password") String password, Model model) {
@@ -73,11 +63,10 @@ public class Controller_user {
         }
 
         if (user != null) {
-            return "redirect:/user/form_product";
+            return "form_product";
         } else {
-            System.out.println("entro");
             model.addAttribute("error", "Nombre de usuario o contraseña incorrectos");
-            return "redirect:/user/home";
+            return "login";
         }
     }
 

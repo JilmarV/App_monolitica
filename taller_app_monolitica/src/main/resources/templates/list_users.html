@@ -63,8 +63,10 @@
 <div class="container mt-4">
     <!-- Botones para cerrar sesión y ver productos -->
     <div class="d-flex justify-content-end mb-3">
-        <button class="btn btn-action" onclick="logout()">Cerrar Sesión</button>
-        <button class="btn btn-action" onclick="viewProducts()">Productos</button>
+
+        <a></a>
+        <a th:href="@{/user/home}" class="btn btn-secondary">Cerrar Sesión</a>
+        <a th:href="@{/Products}" class="btn btn-secondary">Productos</a>
     </div>
 
     <!-- Lista de usuarios -->
