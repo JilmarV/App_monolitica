@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -62,30 +62,30 @@
 <body>
 <div class="user-form">
     <h3>Registrar Usuario</h3>
-    <form id="addUserForm">
+    <form th:action="@{/user}" th:object="${user}" method="post">
         <div class="input-group">
             <span class="input-group-text"><i class="bi bi-person"></i></span>
-            <input type="text" class="form-control" placeholder="Nombre" name="first_name" required>
+            <input type="text" class="form-control" th:field="*{first_name}" placeholder="Nombre" name="first_name" required>
         </div>
         <div class="input-group">
             <span class="input-group-text"><i class="bi bi-person"></i></span>
-            <input type="text" class="form-control" placeholder="Apellido" name="last_name" required>
+            <input type="text" class="form-control" th:field="*{last_name}" placeholder="Apellido" name="last_name" required>
         </div>
         <div class="input-group">
             <span class="input-group-text"><i class="bi bi-card-text"></i></span>
-            <input type="text" class="form-control" placeholder="Número de Documento" name="document_num" required>
+            <input type="text" class="form-control" th:field="*{document_num}" placeholder="Número de Documento" name="document_num" required>
         </div>
         <div class="input-group">
             <span class="input-group-text"><i class="bi bi-house"></i></span>
-            <input type="text" class="form-control" placeholder="Dirección" name="address" required>
+            <input type="text" class="form-control" th:field="*{address}" placeholder="Dirección" name="address" required>
         </div>
         <div class="input-group">
             <span class="input-group-text"><i class="bi bi-envelope"></i></span>
-            <input type="email" class="form-control" placeholder="Correo Electrónico" name="email" required>
+            <input type="email" class="form-control" th:field="*{email}" placeholder="Correo Electrónico" name="email" required>
         </div>
         <div class="input-group">
             <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
-            <input type="text" class="form-control" placeholder="Nombre de Usuario" name="username" required>
+            <input type="text" class="form-control" th:field="*{username}" placeholder="Nombre de Usuario" name="username" required>
         </div>
         <div class="input-group">
             <span class="input-group-text"><i class="bi bi-lock"></i></span>
@@ -97,12 +97,6 @@
 </div>
 
 <script>
-    document.getElementById('addUserForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Aquí podrías manejar la lógica de agregar usuarios
-        event.target.reset();
-    });
-
     // Mostrar/ocultar la contraseña
     document.getElementById('togglePassword').addEventListener('click', function() {
         const passwordInput = document.querySelector('input[name="password"]');

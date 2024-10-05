@@ -30,10 +30,16 @@ public class Controller_user {
         return "register";
     }
 
+    @GetMapping("/home")
+    public String ShowFormLogin(Model model) {
+        model.addAttribute("user", new User());
+        return "login";
+    }
+
     @PostMapping
     public String saveUser(User user, Model model) {
         serviceUser.saveUser(user);
-        return "redirect:/user/form_product";
+        return "redirect:/user/home";
     }
 
     @GetMapping("/delete/{id}")
