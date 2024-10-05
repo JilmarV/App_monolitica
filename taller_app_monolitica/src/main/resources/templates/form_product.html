@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,13 +39,13 @@
         .input-group input {
             background-color: #000;
             border: none;
-            color: #b39ddb; /* Color del texto */
+            color: #b39ddb;
             padding: 10px;
         }
 
         .input-group input::placeholder {
-            color: #b39ddb; /* Color del placeholder */
-            opacity: 1; /* Para que sea más visible */
+            color: #b39ddb;
+            opacity: 1;
         }
 
         .input-group-text {
@@ -85,7 +85,9 @@
 <div class="container">
     <div class="product-form">
         <h3>Agregar Producto</h3>
-        <form id="addProductForm">
+
+        <!-- Formulario para agregar productos -->
+        <form id="addProductForm" th:action="@{/Products}" method="post">
             <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-barcode"></i></span>
                 <input type="text" class="form-control" placeholder="SKU" name="sku" required>
@@ -107,7 +109,15 @@
                 <input type="text" class="form-control" placeholder="Tienda" name="store" required>
             </div>
             <button type="submit" class="btn-add-product">Agregar Producto</button>
+
         </form>
+
+
+        <div class="d-flex justify-content-between mt-3">
+            <a href="#" class="btn btn-secondary">Cerrar Sesión</a>
+            <a href="#" class="btn btn-secondary">Usuarios</a>
+        </div>
+
     </div>
     <div class="product-list">
         <h3>Lista de Productos</h3>
@@ -122,35 +132,24 @@
                 <th>Eliminar</th>
             </tr>
             </thead>
-            <tbody id="productTable">
-            <!-- Aquí se agregarán los productos -->
+            <tbody>
+            <!-- Itera sobre la lista de productos proporcionada por el controlador -->
+            <tr th:each="product : ${products}">
+                <td th:text="${product.sku}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.brand}"></td>
+                <td th:text="${product.store}"></td>
+                <td>
+                    <a th:href="@{/Products/delete/{id}(id=${product.id_product})}" class="btn-delete">Eliminar</a>
+
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
 </div>
 
-<script>
-    document.getElementById('addProductForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const productTable = document.getElementById('productTable');
-        const newRow = document.createElement('tr');
-        newRow.innerHTML = `
-                <td>${formData.get('sku')}</td>
-                <td>${formData.get('name')}</td>
-                <td>${formData.get('price')}</td>
-                <td>${formData.get('brand')}</td>
-                <td>${formData.get('store')}</td>
-                <td><button class="btn-delete" onclick="deleteProduct(this)">Eliminar</button></td>
-            `;
-        productTable.appendChild(newRow);
-        event.target.reset();
-    });
-
-    function deleteProduct(button) {
-        const row = button.closest('tr');
-        row.remove();
-    }
-</script>
 </body>
 </html>
+

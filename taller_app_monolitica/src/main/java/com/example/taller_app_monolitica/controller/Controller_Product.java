@@ -20,18 +20,20 @@ public class Controller_Product {
     @GetMapping
     public String listProduct(Model model) {
          Model products = model.addAttribute("products", service_product.findAll());
-        return "products/list";
+        return "form_product";
     }
 
     @PostMapping
     public String saveProduct(Product product, Model model) {
         service_product.saveProduct(product);
-        return "redirect:/products";
+        return "redirect:/Products";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteProduct(@PathVariable("id") Long id){
         service_product.deleteProduct(id);
-        return "redirect:/products";
+        return "redirect:/Products";
     }
+
+
 }
