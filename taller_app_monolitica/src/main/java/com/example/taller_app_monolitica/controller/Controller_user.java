@@ -18,10 +18,10 @@ public class Controller_user {
         this.serviceUser = serviceUser;
     }
 
-    @GetMapping("/user")
+    @GetMapping("/list_users")
     public String listUser(Model model) {
         Model users = model.addAttribute("users", serviceUser.findAll());
-        return "list";
+        return "list_users";
     }
 
     @GetMapping("/new")
@@ -45,7 +45,7 @@ public class Controller_user {
     @GetMapping("/delete/{id}")
     public String deleteUser(Model model, @PathVariable Long id) {
         serviceUser.deleteUser(id);
-        return "redirect:/user/form_product";
+        return "redirect:/user/list_users";
     }
 
 
